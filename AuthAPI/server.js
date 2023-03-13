@@ -12,7 +12,7 @@ app.use(cors({
     origin: '*'
 }));
 
-app.use('/', healthStatus)
+app.get('/', healthStatus)
 app.use('/auth', routes);
 
 app.listen(process.env.SERVER_PORT, async () => {
