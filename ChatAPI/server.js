@@ -15,8 +15,10 @@ app.use(expressjwt({
 }));
 
 import routes from './src/Router/root.js'; 
+import healthStatus from './src/Middleware/healthStatus.js';
 import errorHandler from './src/Middleware/errorHandler.js';
 
+app.use('/', healthStatus)
 app.use('/api/', routes);
 app.use(errorHandler);
 
