@@ -9,6 +9,8 @@ const app = express();
 app.use(express.json());
 app.use(cors({origin: '*'}));
 
+app.get('/', healthStatus);
+
 app.use(expressjwt({
     secret: await getPubkey(),
     algorithms: ['RS256'],
@@ -18,7 +20,6 @@ import routes from './src/Router/root.js';
 import healthStatus from './src/Middleware/healthStatus.js';
 import errorHandler from './src/Middleware/errorHandler.js';
 
-app.get('/', healthStatus)
 app.use('/api/', routes);
 app.use(errorHandler);
 
