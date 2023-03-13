@@ -1,0 +1,43 @@
+.chat-settings{
+    height: 100%;
+    padding: 50px;
+    overflow: auto;
+}
+.chat-settings > h1 {color: white;}
+.setting-element{
+    margin-top: 50px;
+    margin-left: 20px;
+}
+.setting-element span {
+    color: white;
+    margin-right: 10px;
+    font-size: 15pt;
+}
+.setting-element input[type="text"]{
+    width: 250px;
+    padding: 13px;
+    border-radius: 10px;
+    border: solid 3px rgb(92, 75, 112);
+    background-color: rgb(49, 43, 56);
+    color: white;
+    font-size: 11pt;
+    transition: border-color 1s;
+}
+
+input[type="text"]:focus{
+    outline: none;
+    border-color: rgb(137, 122, 155);
+}
+input[type="text"]:hover{
+    outline: none;
+    border-color: rgb(137, 122, 155);
+}
+.chats-area-request{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.request-list{
+    width: 100%;
+    margin-top: 10px;
+}

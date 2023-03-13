@@ -1,0 +1,31 @@
+.sent-request{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+}
+
+.sent-request input{
+    color: white;
+    padding: 10px;
+    font-size: 10pt;
+}
+.sent-request input[type="text"]{
+    width: 80%;
+    background-color: rgb(69, 60, 73);
+    border: none;
+}
+.sent-request input[type="submit"]{
+    width: 20%;
+    background-color: rgb(80, 68, 85);
+    border: none;
+}
+.sent-request input:hover{
+    background-color: rgb(100, 85, 114);
+}
+.sent-request input:focus{
+    outline: none;
+    background-color: rgb(100, 85, 114);
+}
+.requests{
+    padding: 10px;
+}

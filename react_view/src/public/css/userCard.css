@@ -1,0 +1,16 @@
+.user{
+    display: flex;
+    align-items: center;
+}
+
+.user img{
+    width: 60px;
+    padding: 2px;
+    margin-right: 20px;
+    background-color: aqua;
+    border-radius: 100px;
+}
+.user span{
+    color: white;
+    font-size: 16pt;
+}

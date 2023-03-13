@@ -1,0 +1,78 @@
+.container-create-grup{
+    padding: 20px;
+    background-color: rgb(49, 43, 56);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-create-grup input[type="file"]{
+    display: none;
+}
+
+.container-create-grup img {
+    width: 75px;
+    margin-bottom: 10px;
+    background-color: aquamarine;
+    border-radius: 100px;
+    padding: 2px;
+    transition: background-color 500ms;
+}
+.container-create-grup img:hover{
+    background-color: rgb(179, 179, 179);
+}
+
+.container-create-grup input[type="text"]{
+    width: 250px;
+    display: block;
+    margin-bottom: 30px;
+    padding: 13px;
+    border-radius: 10px;
+    border: solid 3px rgb(92, 75, 112);    
+    background-color: rgb(49, 43, 56);
+    color: white;
+    font-size: 11pt;
+    transition: border-color 1s;
+}
+.container-create-grup textarea{
+    width: 250px;
+    display: block;
+    padding: 13px;
+    border-radius: 10px;
+    border: solid 3px rgb(92, 75, 112);    
+    background-color: rgb(49, 43, 56);
+    color: white;
+    font-size: 11pt;
+    transition: border-color 1s;
+    resize: none
+}
+.container-create-grup textarea:hover{
+    outline: none;
+    border-color: rgb(137, 122, 155);
+}
+.container-create-grup textarea:focus{
+    outline: none;
+    border-color: rgb(137, 122, 155);
+}
+
+.container-create-grup input[type="text"]:hover{
+    outline: none;
+    border-color: rgb(137, 122, 155);
+}
+.container-create-grup input[type="text"]:focus{
+    outline: none;
+    border-color: rgb(137, 122, 155);
+}
+.container-create-grup button{
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: none;    
+    background-color: rgb(92, 75, 112);
+    color: white;
+    transition: background-color 1s;
+}
+.container-create-grup button:hover{
+    background-color: rgb(117, 89, 150);
+}

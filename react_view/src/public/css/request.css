@@ -1,0 +1,39 @@
+.photoDefault{
+    width: 60px;
+    margin: 10px;
+    margin-right: 20px;
+    padding: 2px;
+    background-color: aqua;
+    border-radius: 100px;
+}
+
+.request{
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(38, 30, 44);
+    border-radius: 5px;
+}
+.udata{
+    display: flex;
+    align-items: center;
+}
+.udata span{
+    color: white;    
+    font-size: 16pt;
+}
+.request button{
+    padding: 5px;
+    background-color: rgb(80, 68, 85);
+    border: none;
+    border-radius: 100px;
+    margin-right: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.request button:hover{
+    background-color: rgb(119, 95, 133);
+}

@@ -1,0 +1,74 @@
+.chat-frame{
+    width: 70%;
+    height: 75%;
+    display: flex;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.205);
+    background-color: rgb(49, 43, 56);
+}
+
+
+
+/* CHAT HEADER AND NAVBAR */
+
+.header{
+    width: 27%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* display: ; */
+}
+.logo-space{
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.logo-space img{
+    width: 75px;
+    margin: 0 auto;
+}
+.nav-opts{
+    width: 100%;
+    padding: 5px;
+    font-size: 12pt;
+    color: white;
+    background-color: rgb(80, 68, 85);
+    border-radius: 4px;
+    margin: 5px;
+    border: none;
+    font-size: 13pt;
+}
+.nav-opts-slected{
+    background-color: rgb(100, 85, 114);
+}
+.nav-opts:hover{
+    background-color: rgb(100, 85, 114);
+    cursor: pointer;
+}
+.container{
+    width: 100%;
+    height: 100%;
+}
+.foot-wheel{
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(36, 33, 41);
+    display: flex;
+    justify-content: center;
+}
+
+
+
+/* AREA */
+.area{
+    width: 73%;
+    height: 100%;
+    background-color: rgba(20, 18, 22, 0.692);
+}
+
