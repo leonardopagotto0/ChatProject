@@ -1,0 +1,1 @@
+const df = Math.floor(Date.now()/1000);

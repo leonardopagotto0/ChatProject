@@ -1,0 +1,6 @@
+{
+    "ACCEPT": "ACCEPT",
+    "REJECT": "REJECT",
+    "ON_HOLD": "ON_HOLD",
+    "CANCEL": "CANCEL"
+}
