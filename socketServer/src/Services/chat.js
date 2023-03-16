@@ -9,3 +9,21 @@ export async function getUsers(chatID){
         throw err;
     }
 }
+
+export async function create (chatID, users)
+{
+    try {
+        const [ result ] = await conn.execute('INSERT INTO chats (id, users) VALUES (?, ?)',
+        [chatID, JSON.stringify(users)]);
+
+        if(!result.affectedRows) return false;
+        return true;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export default {
+    create,
+    getUsers,
+}

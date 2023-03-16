@@ -1,7 +1,6 @@
 import * as Request from '../Services/request.js';
 import * as User from '../Services/user.js';
 
-
 export default async function request({io, socket}, req, response)
 {
 

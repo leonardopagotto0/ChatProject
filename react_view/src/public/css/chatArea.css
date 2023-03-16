@@ -94,3 +94,17 @@
 .btn-goto-invisible{
     display: none;
 }
+.apresentation{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    font-size: 13pt;
+}
+.apresentation h1{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

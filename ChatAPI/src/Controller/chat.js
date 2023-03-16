@@ -1,14 +1,11 @@
-import { listChats } from "../Service/listChats.js";
-import validateRequest from "../Service/validateRequest.js";
-import createNewGrup from "../Service/createGrup.js";
-import formatChats from "../Service/formatChat.js";
 import createError from "http-errors";
+import Chat from "../Service/chat.js";
+import createNewGrup from "../Service/createGrup.js";
 
 export async function index (req, res, next)
 {
     const { id } = req.auth;
-    console.log(id);
-    const chats = await listChats(id);
+    const chats = await Chat.list(id);
     
     if(!chats) throw createError(404, {body: {
         httpStatusCode: 404,
@@ -16,7 +13,7 @@ export async function index (req, res, next)
         msg: 'You do not have chats'
     }});
 
-    const chatsformated = await formatChats(chats, id);
+    const chatsformated = await Chat.fromat(chats, id);
 
     res.status(200).json({
         httpStatusCode: 200,

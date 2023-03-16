@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 
 import UserCard from "../components/UserCard";
 import NavbarSession from "../components/NavbarSession";
@@ -10,7 +11,18 @@ import * as DBCommands from "../lib/commands.js";
 import '../public/css/chat.css';
 import logo_img from '../public/images/cat-logo.png'
 
-function Chat ({db}){    
+function Chat ({db}){
+
+    const toastConfig = {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+    };
 
     const currentChatRef = useRef({chatID: null});
     const newChat = useRef();
@@ -19,8 +31,6 @@ function Chat ({db}){
     const socket = useRef();
     const [ UserData, setUserData ] = useState({});
     const navigate = useNavigate();
-
-    console.log("CHAT PAGE");
 
     useEffect(function () {
         socket.current = io("http://localhost:8082", {
@@ -36,7 +46,8 @@ function Chat ({db}){
                 ...data
             });
 
-            
+            toast.warning(`New request from ${data.name}`, toastConfig);
+
             if(typeof newRequest.current == 'function'){
                 const requests = await DBCommands.getRequests();
                 const setRequests = await newRequest.current();
@@ -51,6 +62,7 @@ function Chat ({db}){
         socket.current.on('request updated', async (data) => {
             if(data.status == 'ACCEPT') {
                 const req = await DBCommands.getRequest(data.id);
+                toast.success(`${req.name} accept your request!`, toastConfig);
                 await DBCommands.addChat(req.name, data.chatID, req.photo);
             }
 
@@ -68,9 +80,9 @@ function Chat ({db}){
 
         socket.current.on('message received', async (data) => {
             DBCommands.saveMessage(data);
-            
             const setMessage = newMessage.current;
 
+            if(!setMessage) return;
             setMessage.showMessage(data);
         });
 
@@ -88,20 +100,23 @@ function Chat ({db}){
     }, []);
 
     return(
-        <div className="chat-frame">
-            <div className="header">
-                <div className="logo-space">
-                    <img src={logo_img} alt="App logo"/>
+        <>        
+            <div className="chat-frame">
+                <div className="header">
+                    <div className="logo-space">
+                        <img src={logo_img} alt="App logo"/>
+                    </div>
+                    <NavbarSession currentChat={currentChatRef} newChat={newChat} socket={socket} newRequest={newRequest}/>
+                    <div className="foot-wheel">
+                        <UserCard name={UserData.name} photo={UserData.photo}/>
+                    </div>
                 </div>
-                <NavbarSession currentChat={currentChatRef} newChat={newChat} socket={socket} newRequest={newRequest}/>
-                <div className="foot-wheel">
-                    <UserCard name={UserData.name} photo={UserData.photo}/>
+                <div className="area">
+                    <ChatArea newMessage={newMessage} currentChat={currentChatRef} socket={socket}/> 
                 </div>
             </div>
-            <div className="area">
-                <ChatArea newMessage={newMessage} currentChat={currentChatRef} socket={socket}/> 
-            </div>
-        </div>
+            <ToastContainer />
+        </>
     );
 }
 

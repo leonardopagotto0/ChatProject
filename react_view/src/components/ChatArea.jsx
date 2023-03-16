@@ -4,8 +4,6 @@ import Chat from "./Chat";
 
 function ChatArea({newMessage, currentChat, socket}){
 
-    console.log("CHAT AREA");
-
     const [chat, setChat] = React.useState({name: null, photo: null, id: null});
 
     const showChat = React.useCallback(() => {
@@ -14,7 +12,6 @@ function ChatArea({newMessage, currentChat, socket}){
                 name: currentChat.current.name,
                 photo: currentChat.current.photo,
                 id: currentChat.current.chatID,
-                isGrup: currentChat.current.isGrup,
             }
         });
     }, []);
@@ -27,7 +24,10 @@ function ChatArea({newMessage, currentChat, socket}){
     
     return(
         <>
-            <Chat newMessage={newMessage} name={chat.name} photo={chat.photo} chatID={chat.id} isGrup={chat.isGrup} socket={socket}/>
+            {chat.name 
+                ? <Chat newMessage={newMessage} name={chat.name} photo={chat.photo} chatID={chat.id} isGrup={chat.isGrup} socket={socket}/>
+                : <div className="apresentation"><h1>Welcome</h1></div>
+            }
         </>
     );
 }

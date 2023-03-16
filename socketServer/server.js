@@ -1,16 +1,10 @@
 import { Server } from 'socket.io';
 import dotenv from 'dotenv/config';
 
-import requestPubKey from './src/Services/getPublicKey.js';
-import validateAddressee from './src/Services/validateUser.js';
-import validateToken from './src/Services/validateToken.js';
-import validateChat from './src/Services/validateChat.js';
-import * as requestService from './src/Services/request.js';
-import * as userService from './src/Services/user.js';
-import * as chatService from './src/Services/chat.js';
-import * as messageService from './src/Services/message.js';
-
 import socketHandler from './src/Utils/socketHandler.js'
+import requestPubKey from './src/Services/getPublicKey.js';
+import validateToken from './src/Services/validateToken.js';
+
 import messageController from './src/Controllers/message.js';
 import requestController from './src/Controllers/request.js';
 

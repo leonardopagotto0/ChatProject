@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect, useImperativeHandle } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 
 import Request from "./subcomponents/Request";
 import * as DBCommands from "../lib/commands.js";
@@ -7,6 +8,17 @@ import '../public/css/requestSession.css';
 import { routes } from "../Utils/api";
 
 function Requests({socket, newRequest}){
+
+    const toastConfig = {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+    };
 
     const [ requests, setRequests ] = useState([]);
     const identified = useRef(null);
@@ -26,8 +38,13 @@ function Requests({socket, newRequest}){
             chatID: null
         }, 
         (err, result) => {
-            if(result) 
-            return setRequests((last) => {
+            if(err){
+                if(err == 'INVALID_USER_NAME') return toast.warning('Invalid username', toastConfig);
+                return toast.error('Error to sent request', toastConfig)
+            }
+
+            toast.success(`Requet sent to ${result.name}.`, toastConfig);
+            setRequests((last) => {
                 const res = {
                     id: result.requestID,
                     name: result.name,
@@ -40,6 +57,7 @@ function Requests({socket, newRequest}){
             });
         });
 
+        identified.current.value = '';
     }, []);
 
     const optEvent = useCallback(async (id, status, userData)=>{
@@ -48,19 +66,19 @@ function Requests({socket, newRequest}){
         if(!status) return;
 
         await socket.current.emit('request', { id, status}, async function (err, result){
-            if(result){
-                await DBCommands.removeRequest(id);
-                if(result.chatID) await DBCommands.addChat(userData.name, result.chatID, userData.photo);
-                
-                setRequests(lastRequests => {
-                    const reqs = new Array();
-                    lastRequests.forEach(req => {
-                        if(req.id != id) reqs.push(req);
-                    });
-                    return reqs;
+            if(err) return toast.error('Error to update request', toastConfig);
+            
+            await DBCommands.removeRequest(id);
+            if(result.chatID) await DBCommands.addChat(userData.name, result.chatID, userData.photo);
+            
+            setRequests(lastRequests => {
+                const reqs = new Array();
+                lastRequests.forEach(req => {
+                    if(req.id != id) reqs.push(req);
                 });
+                return reqs;
+            });
 
-            }
         });
 
     }, []);
@@ -110,6 +128,7 @@ function Requests({socket, newRequest}){
                     return <Request name={req.name} photo={req.photo} id={req.id} received={req.sender} key={req.id} optEvent={optEvent}/>
                 })}
             </div>
+            <ToastContainer />
         </>
     )
 }

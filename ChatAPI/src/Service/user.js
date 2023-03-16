@@ -1,7 +1,6 @@
 import conn from "../Config/connection.js";
-import requestStatus from '../Model/requestStatus.json' assert {type: 'json'};
 
-async function listUserRequests (userID, status)
+export async function requests (userID, status)
 {
     try {
         let sql;
@@ -25,4 +24,6 @@ async function listUserRequests (userID, status)
     }
 }
 
-export default listUserRequests;
+export default {
+    requests
+}

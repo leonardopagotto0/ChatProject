@@ -3,7 +3,7 @@ import buildID from '../Utils/id.js';
 
 import * as model from '../Models/request.js';
 import * as validator from './reqValidator.js';
-import createChat from "./createChat.js";
+import Chat from "./chat.js";
 
 export async function update (requestID, status, {chatID, users})
 {
@@ -20,7 +20,7 @@ export async function update (requestID, status, {chatID, users})
 
         if(createNewChat){
             try {
-                const created = await createChat(chatID, users);
+                const created = await Chat.create(chatID, users);
                 console.log("CREATED CHAT? ", created);
             } catch (err) {
                 console.log(err);

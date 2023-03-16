@@ -1,6 +1,6 @@
 import conn from "../Config/connection.js";
 
-async function fromatRequests (requests, userID, userName)
+export async function format (requests, userID, userName)
 {
 
     if(!requests || !requests[0]) return null;
@@ -59,4 +59,6 @@ async function fromatRequests (requests, userID, userName)
     }
 }
 
-export default fromatRequests;
+export default {
+    format,
+}

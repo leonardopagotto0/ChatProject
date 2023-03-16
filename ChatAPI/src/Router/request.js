@@ -7,8 +7,6 @@ const router = Router();
 
 router
     .get('/', redirectErr(requestController.listOnHold))
-    .post('/', redirectErr(requestController.sent))
-    .put('/', redirectErr(requestController.action))
 ;
 
 export default router;

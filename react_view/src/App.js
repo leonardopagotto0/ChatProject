@@ -4,7 +4,7 @@ import React from 'react';
 
 import Chat from './pages/Chat';
 import Login from './pages/Login';
-import Singup from './pages/Signup';
+import Register from './pages/Register';
 import CreateGrup from './pages/createGrup';
 
 function App ()
@@ -19,7 +19,7 @@ function App ()
                 <Route path="/chat" element={<Chat db={db} />} />
                 <Route path="/chat/create-grup" element={<CreateGrup />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Singup />} />
+                <Route path="/register" element={<Register />} />
             </Routes>
         </Router>
     );

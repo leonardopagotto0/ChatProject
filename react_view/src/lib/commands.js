@@ -2,9 +2,13 @@ import database from "./db.js"
 
 const db = database();
 
+export async function Clear()
+{
+    await db.delete();
+}
+
 export async function addChat(name, id, photo)
 {
-    console.log(name, id, photo);
     await db.chats.add({
         name, id, "photo": photo
     })

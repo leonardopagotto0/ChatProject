@@ -1,12 +1,11 @@
 import createError from "http-errors";
-import { deleteMessage } from "../Service/deleteMessage.js";
-import { listMessages } from "../Service/listMessages.js";
+import Message from "../Service/message.js";
 
 export async function list(req, res, next)
 {
     const { userID, chatID } = req.body;
  
-    const messages = await listMessages(chatID);
+    const messages = await Message.list(chatID);
 
     res.status(200).json({
         httpStatusCode: 200,
@@ -21,7 +20,7 @@ export async function del(req, res, next)
     const { userID } = req.body;
     const { msgID } = req.params;
 
-    const deleted = await deleteMessage(msgID, userID);
+    const deleted = await Message.del(msgID, userID);
 
     if(!deleted) throw createError(500, {body: {
         httpStatusCode: 500,

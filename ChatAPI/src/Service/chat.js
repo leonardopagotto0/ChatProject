@@ -1,6 +1,20 @@
 import conn from "../Config/connection.js";
+import status from '../Model/requestStatus.json' assert {type: 'json'};
 
-async function formatChats (chats, user_id)
+async function create(chatID, users)
+{
+    try {
+        const [ result ] = await conn.execute('INSERT INTO chats (id, users) VALUES (?, ?)',
+        [chatID, users]);
+
+        if(!result.affectedRows) return false;
+        return true;
+    } catch (err) {
+        throw err;
+    }
+}
+
+async function fromat(chats, user_id)
 {
     try {
         
@@ -41,4 +55,30 @@ async function formatChats (chats, user_id)
     }
 }
 
-export default formatChats;
+async function list(userID)
+{
+    try {
+        const chatIDs = new Array();
+        
+        const [ requests ] = await conn.execute('SELECT * FROM requests WHERE `to`= ? OR `from` = ? AND status = ?', 
+        [userID, userID, status.ACCEPT]);
+        
+        requests.forEach(req => chatIDs.push(req.chatID));
+        if(!chatIDs[0]) chatIDs.push(null);
+
+        const [ chats ] = await conn.query('SELECT * FROM chats WHERE owner = ? OR id IN (?)',
+        [userID, chatIDs]);
+
+        if(!chats[0]) return null;
+
+        return chats;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export default {
+    create,
+    fromat,
+    list
+}
