@@ -2,11 +2,11 @@
 
 ![Alt Text](./md_data/chat_apresentation.gif)
 
-Um chat em tempo real utilizando de WebSockets dividido em 4 serviços e sendo consumidos por uma API Gateway da AWS.
+Um chat em tempo real utilizando de WebSockets dividido em 4 serviços e sendo consumidos por uma API Gateway da AWS. Utilizando 2 liguagens de back-end NodeJS e Java, com as bibliotecas ExpressJS e Spring Boot.
 
 Melhorias que eu faria se fosse colocar o projeto em produção:
 1. Encripitografar todos dados privados do payload do JWT.
-2. Geração automatica da chave publica e privada que assina o JWT ao lançar o servidor.
+2. Geração automatica da chave publica e privada que assina o JWT ao lançar o servidor (Feito na versão da AuthAPI em java).
 3. Melhoraria e iria restringir a configuração do Cors.
 4. Animações e tela de carregamento no app React.
 6. Organizaria os arquivos do app React (Talvez enquando vc estiver lendo isso, eu ja tenha organizado).
@@ -19,9 +19,11 @@ Tecnologias & bibliotecas utilizadas:
 * MySQL
 * WebSockets
 * Express
+* Spring Boot
 * uuid
 * Cors
 * React
 * NodeJS
+* Java
 * LocalStorage
 * IndexedDB
