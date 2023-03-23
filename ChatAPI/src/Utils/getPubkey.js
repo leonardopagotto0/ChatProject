@@ -4,8 +4,9 @@ async function getPubkey()
 {
     try {
         const result = await axios.get(`${process.env.AUTH_SERVICE_URL}/auth/pubkey`);
-        const key = result.data.key;
-        return key;
+        const finalKey = JSON.parse(result.data.key);
+        console.log(finalKey);
+        return finalKey;
     } catch (err) {
         throw err;
     }

@@ -41,7 +41,7 @@ function Login(){
         try {
             const request = await fetch(routes.login, {
                 body: JSON.stringify({
-                    username: emailField.current.value,
+                    identifier: emailField.current.value,
                     password: passwordField.current.value
                 }),
                 method: 'POST',
@@ -60,10 +60,11 @@ function Login(){
             };
     
             localStorage.setItem('api_access_token', result.data.access);
-            localStorage.setItem('userData', JSON.stringify(result.data.user));
+            localStorage.setItem('userData', JSON.stringify({"name": result.data.name, "photo": result.data.photo}));
 
             navigate('/chat');
         } catch (err) {
+            console.log(err);
             return toast.error('error communicating with the server', toastConfig)
         }
 

@@ -2,6 +2,7 @@ import express from 'express';
 import { expressjwt } from 'express-jwt';
 import getPubkey from './src/Utils/getPubkey.js';
 import dotenv from 'dotenv/config';
+import {expressJwtSecret} from 'jwks-rsa';
 import cors from 'cors';
 
 const app = express();
@@ -12,7 +13,12 @@ app.use(cors({origin: '*'}));
 app.get('/', healthStatus);
 
 app.use(expressjwt({
-    secret: await getPubkey(),
+    secret: expressJwtSecret({
+        jwksUri: `${process.env.AUTH_SERVICE_URL}/auth/pubkey`,
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5
+    }),
     algorithms: ['RS256'],
 }));
 

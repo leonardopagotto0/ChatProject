@@ -46,7 +46,7 @@ function Register()
             const request = await fetch(routes.singup, {
                 body: JSON.stringify({
                     email,
-                    username,
+                    "name": username,
                     password
                 }),
                 method: 'POST',
@@ -58,7 +58,7 @@ function Register()
             const result = await request.json();
     
             if(result.data){
-                localStorage.setItem('api_access_token', result.data.accessToken);
+                localStorage.setItem('api_access_token', result.data.access);
                 localStorage.setItem('userData', JSON.stringify(
                     {name: result.data.name, photo: result.data.photo}
                 ));
